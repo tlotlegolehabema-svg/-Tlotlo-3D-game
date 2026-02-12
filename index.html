@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tlotlo 3D Game</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+            background: #000;
+        }
+
+        #gameContainer {
+            width: 100%;
+            height: 100vh;
+            position: relative;
+        }
+
+        #canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        .hud {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: #00ff00;
+            font-size: 24px;
+            font-weight: bold;
+            text-shadow: 0 0 10px #00ff00;
+            z-index: 100;
+        }
+
+        .score {
+            margin-bottom: 15px;
+        }
+
+        .health {
+            margin-bottom: 15px;
+        }
+
+        .controls-info {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: #00ff00;
+            font-size: 14px;
+            text-shadow: 0 0 10px #00ff00;
+            text-align: right;
+            z-index: 100;
+        }
+
+        .mobile-controls {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: none;
+            gap: 10px;
+            z-index: 100;
+        }
+
+        .mobile-controls.active {
+            display: flex;
+        }
+
+        .control-btn {
+            width: 60px;
+            height: 60px;
+            background: rgba(0, 255, 0, 0.3);
+            border: 2px solid #00ff00;
+            color: #00ff00;
+            font-size: 24px;
+            cursor: pointer;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            user-select: none;
+            transition: all 0.1s;
+            font-weight: bold;
+        }
+
+        .control-btn:active {
+            background: rgba(0, 255, 0, 0.6);
+            transform: scale(0.95);
+        }
+
+        .dpad {
+            display: grid;
+            grid-template-columns: repeat(3, 60px);
+            grid-template-rows: repeat(3, 60px);
+            gap: 5px;
+        }
+
+        .dpad .up {
+            grid-column: 2;
+            grid-row: 1;
+        }
+
+        .dpad .down {
+            grid-column: 2;
+            grid-row: 3;
+        }
+
+        .dpad .left {
+            grid-column: 1;
+            grid-row: 2;
+        }
+
+        .dpad .right {
+            grid-column: 3;
+            grid-row: 2;
+        }
+
+        .title {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #00ff00;
+            font-size: 48px;
+            font-weight: bold;
+            text-shadow: 0 0 20px #00ff00;
+            z-index: 200;
+            text-align: center;
+            pointer-events: none;
+        }
+
+        .title.hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="gameContainer">
+        <div class="hud">
+            <div class="score">Score: <span id="score">0</span></div>
+            <div class="health">Health: <span id="health">100</span></div>
+        </div>
+        <div class="controls-info">
+            <div>Arrow Keys / WASD to Move</div>
+            <div>Space to Jump</div>
+        </div>
+        <div class="mobile-controls" id="mobileControls">
+            <div class="dpad">
+                <button class="control-btn up" data-direction="up">▲</button>
+                <button class="control-btn left" data-direction="left">◄</button>
+                <button class="control-btn down" data-direction="down">▼</button>
+                <button class="control-btn right" data-direction="right">►</button>
+            </div>
+        </div>
+        <div class="title" id="title">TLOTLO 3D GAME</div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="js/game.js"></script>
+</body>
+</html>

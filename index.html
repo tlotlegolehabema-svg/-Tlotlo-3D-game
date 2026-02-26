@@ -3,166 +3,287 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tlotlo 3D Game</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Arial', sans-serif;
-            overflow: hidden;
-            background: #000;
-        }
-
-        #gameContainer {
-            width: 100%;
-            height: 100vh;
-            position: relative;
-        }
-
-        #canvas {
-            display: block;
-            width: 100%;
-            height: 100%;
-        }
-
-        .hud {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            color: #00ff00;
-            font-size: 24px;
-            font-weight: bold;
-            text-shadow: 0 0 10px #00ff00;
-            z-index: 100;
-        }
-
-        .score {
-            margin-bottom: 15px;
-        }
-
-        .health {
-            margin-bottom: 15px;
-        }
-
-        .controls-info {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            color: #00ff00;
-            font-size: 14px;
-            text-shadow: 0 0 10px #00ff00;
-            text-align: right;
-            z-index: 100;
-        }
-
-        .mobile-controls {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: none;
-            gap: 10px;
-            z-index: 100;
-        }
-
-        .mobile-controls.active {
-            display: flex;
-        }
-
-        .control-btn {
-            width: 60px;
-            height: 60px;
-            background: rgba(0, 255, 0, 0.3);
-            border: 2px solid #00ff00;
-            color: #00ff00;
-            font-size: 24px;
-            cursor: pointer;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            user-select: none;
-            transition: all 0.1s;
-            font-weight: bold;
-        }
-
-        .control-btn:active {
-            background: rgba(0, 255, 0, 0.6);
-            transform: scale(0.95);
-        }
-
-        .dpad {
-            display: grid;
-            grid-template-columns: repeat(3, 60px);
-            grid-template-rows: repeat(3, 60px);
-            gap: 5px;
-        }
-
-        .dpad .up {
-            grid-column: 2;
-            grid-row: 1;
-        }
-
-        .dpad .down {
-            grid-column: 2;
-            grid-row: 3;
-        }
-
-        .dpad .left {
-            grid-column: 1;
-            grid-row: 2;
-        }
-
-        .dpad .right {
-            grid-column: 3;
-            grid-row: 2;
-        }
-
-        .title {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: #00ff00;
-            font-size: 48px;
-            font-weight: bold;
-            text-shadow: 0 0 20px #00ff00;
-            z-index: 200;
-            text-align: center;
-            pointer-events: none;
-        }
-
-        .title.hidden {
-            display: none;
-        }
-    </style>
+    <title>PixelForge Studios - Web Design & Development</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div id="gameContainer">
-        <div class="hud">
-            <div class="score">Score: <span id="score">0</span></div>
-            <div class="health">Health: <span id="health">100</span></div>
-        </div>
-        <div class="controls-info">
-            <div>Arrow Keys / WASD to Move</div>
-            <div>Space to Jump</div>
-        </div>
-        <div class="mobile-controls" id="mobileControls">
-            <div class="dpad">
-                <button class="control-btn up" data-direction="up">▲</button>
-                <button class="control-btn left" data-direction="left">◄</button>
-                <button class="control-btn down" data-direction="down">▼</button>
-                <button class="control-btn right" data-direction="right">►</button>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-cube"></i>
+                <span>PixelForge</span>
+            </div>
+            <div class="nav-menu" id="navMenu">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#services" class="nav-link">Services</a>
+                <a href="#portfolio" class="nav-link">Portfolio</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
         </div>
-        <div class="title" id="title">TLOTLO 3D GAME</div>
-    </div>
+    </nav>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="js/game.js"></script>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Transform Your Vision Into Digital Reality</h1>
+            <p class="hero-subtitle">Professional Web Design & Development Services in South Africa</p>
+            <div class="hero-buttons">
+                <a href="#contact" class="btn btn-primary">Get Started</a>
+                <a href="#services" class="btn btn-secondary">Learn More</a>
+            </div>
+        </div>
+        <div class="hero-graphic">
+            <div class="floating-cube"></div>
+            <div class="floating-cube" style="animation-delay: 1s;"></div>
+            <div class="floating-cube" style="animation-delay: 2s;"></div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title">Our Services</h2>
+            <p class="section-subtitle">Comprehensive web solutions tailored to your business needs</p>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Web Development</h3>
+                    <p>Custom-built websites and web applications using modern technologies and best practices.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <h3>UI/UX Design</h3>
+                    <p>Beautiful, intuitive designs that engage users and drive conversions.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Responsive Design</h3>
+                    <p>Mobile-first approach ensuring perfect display on all devices and screen sizes.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>Performance Optimization</h3>
+                    <p>Lightning-fast loading times and optimized performance for better user experience.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>SEO Optimization</h3>
+                    <p>Strategic SEO implementation to improve your online visibility and search rankings.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3>Website Maintenance</h3>
+                    <p>Ongoing support, updates, and maintenance to keep your site running smoothly.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <h2 class="section-title">Recent Projects</h2>
+            <p class="section-subtitle">Showcasing our latest successful web design and development projects</p>
+            
+            <div class="portfolio-grid">
+                <div class="portfolio-card">
+                    <div class="portfolio-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"></div>
+                    <div class="portfolio-content">
+                        <h3>E-Commerce Platform</h3>
+                        <p>Full-featured online store with payment integration and inventory management.</p>
+                    </div>
+                </div>
+                
+                <div class="portfolio-card">
+                    <div class="portfolio-image" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);"></div>
+                    <div class="portfolio-content">
+                        <h3>Corporate Website</h3>
+                        <p>Professional corporate site with CMS integration and content management system.</p>
+                    </div>
+                </div>
+                
+                <div class="portfolio-card">
+                    <div class="portfolio-image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);"></div>
+                    <div class="portfolio-content">
+                        <h3>Mobile App Website</h3>
+                        <p>Engaging landing page for mobile application with download links and features.</p>
+                    </div>
+                </div>
+                
+                <div class="portfolio-card">
+                    <div class="portfolio-image" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);"></div>
+                    <div class="portfolio-content">
+                        <h3>Portfolio Showcase</h3>
+                        <p>Creative portfolio website for freelance designer with portfolio gallery.</p>
+                    </div>
+                </div>
+                
+                <div class="portfolio-card">
+                    <div class="portfolio-image" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);"></div>
+                    <div class="portfolio-content">
+                        <h3>SaaS Dashboard</h3>
+                        <p>Interactive dashboard with real-time data visualization and analytics.</p>
+                    </div>
+                </div>
+                
+                <div class="portfolio-card">
+                    <div class="portfolio-image" style="background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);"></div>
+                    <div class="portfolio-content">
+                        <h3>Blog Platform</h3>
+                        <p>Content-rich blogging platform with SEO optimization and social sharing.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2 class="section-title">About PixelForge Studios</h2>
+                    <p>We are a passionate team of web designers and developers based in Centurion, South Africa. With years of experience in creating digital solutions, we help businesses establish a strong online presence.</p>
+                    <p>Our mission is to deliver exceptional web design and development services that exceed client expectations and drive business growth. We combine creativity with technical expertise to build websites that are not just beautiful, but also highly functional and user-friendly.</p>
+                    
+                    <div class="about-stats">
+                        <div class="stat">
+                            <h3>50+</h3>
+                            <p>Projects Completed</p>
+                        </div>
+                        <div class="stat">
+                            <h3>30+</h3>
+                            <p>Happy Clients</p>
+                        </div>
+                        <div class="stat">
+                            <h3>5+</h3>
+                            <p>Years Experience</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <div class="about-graphic">
+                        <div class="cube-container">
+                            <div class="cube"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <p class="section-subtitle">We'd love to hear from you. Let's discuss your project.</p>
+            
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <h3>Phone</h3>
+                        <p><a href="tel:+27671239971">+27 67 123 9971</a></p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h3>Email</h3>
+                        <p><a href="mailto:tlotlegomalehabe@gmail.com">tlotlegomalehabe@gmail.com</a></p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <h3>Location</h3>
+                        <p>Centurion, Pretoria<br>Gauteng, South Africa</p>
+                    </div>
+                </div>
+                
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <input type="text" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" placeholder="Subject" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="Your Message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>PixelForge Studios</h3>
+                    <p>Professional Web Design & Development Services</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#portfolio">Portfolio</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Follow Us</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 PixelForge Studios. All rights reserved. Designed by Tlotlego Lehabe</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
